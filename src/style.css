@@ -283,6 +283,11 @@ nav li:hover a {
   
 }
 
+.content p{
+  margin: 0 5rem;
+  font-size: 1.2rem;
+}
+
 .welcomeTitle{
   text-align: center;
   font-size: 1.5rem;
