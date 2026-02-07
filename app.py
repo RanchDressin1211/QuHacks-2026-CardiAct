@@ -62,22 +62,22 @@ def predict():
     data = request.get_json() or {}
     try:
         age = float(data.get('Age', 0))
-        sex = data.get('Sex', 0)
-        chestpain = data.get('ChestPainType', 0)
+        sex = 1 if data.get('Sex', 0)=="M" else 0
+        chestpain = ["ASY","NAP","ATA","TA"].index(data.get('ChestPainType', 0))
         restingbp = float(data.get('RestingBP', 0))
         cholesterol = float(data.get('Cholesterol', 0))
         fastingbs = float(data.get('FastingBS', 0))
-        restingecg = data.get('RestingECG', 0)
+        restingecg = ["LVH","Normal","ST"].index(data.get('RestingECG', 0))
         maxhr = float(data.get('MaxHR', 0))
-        exerciseangina = data.get('ExerciseAngina', 0)
+        exerciseangina = 0 if data.get('ExerciseAngina', 0)=="N" else 1
         oldpeak = float(data.get('Oldpeak', 0))
-        stslope = data.get('ST_Slope', 0)
+        stslope = ["Down","Flat","Up"].index(data.get('ST_Slope', 0))
     except (TypeError, ValueError):
         return jsonify({'error': 'invalid input'}), 400
 
     prediction = find_prediction(age, sex, chestpain, restingbp, cholesterol, fastingbs, restingecg, maxhr, exerciseangina, oldpeak, stslope)
 
-    return jsonify({'prediction': prediction})
+    return jsonify({'prediction': int(prediction)})
 
 
 @app.route('/<path:path>')

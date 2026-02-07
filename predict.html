@@ -83,7 +83,7 @@
 
             <div class="formvalues">
                 <label for="exerciseangina">Exercise-induced Angina:</label>
-                <select name="fastingbs" id="fastingbs">
+                <select name="exerciseangina" id="exerciseangina">
                     <option value="Y">Yes</option>
                     <option value="N">No</option>
                 </select>
@@ -104,11 +104,28 @@
             </div>
 
             <button id="submit">Predict</button>
+            <p id="prediction-value"></p>
+        </div>
 
+
+        <button id="chatbot">
+            Need Help?
+        </button>
+        
+        <div id="chat">
+            <button id="closechat">X</button>
+            <div id="messages">
+            
+            </div>
+
+            <textarea id="chatinput" placeholder="Ask away!"></textarea>
+            <button id="chatsend">Send</button>
         </div>
 
     </div>
   </body>
+
+  <script src="/src/main.js"></script>
 
   <script>
     // Collect inputs and call the backend prediction endpoint
@@ -119,7 +136,7 @@
         const payload = {
             Age: document.getElementById('age').value,
             Sex: document.getElementById('sex').value,
-            ChestPainType: document.getElementById('chestpain').value,
+            ChestPainType: document.getElementById('chestpaintype').value,
             RestingBP: document.getElementById('restingbp').value,
             Cholesterol: document.getElementById('serumchol').value,
             FastingBS: document.getElementById('fastingbs').value,
