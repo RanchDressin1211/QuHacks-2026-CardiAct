@@ -9,8 +9,9 @@ from lightgbm import LGBMClassifier
 
 df = pd.read_csv("heart.csv")
 
-def find_prediction(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG, MaxHR, ExerciseAngina, Oldpeak, ST_Slope):
-  
+def find_prediction(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS,
+       RestingECG, MaxHR, ExerciseAngina, Oldpeak, ST_Slope):
+
   label_encoder = LabelEncoder()
 
   df['Sex'] = label_encoder.fit_transform(df['Sex'])  # Male: 1, Female: 0
@@ -34,8 +35,23 @@ def find_prediction(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, 
   model = LGBMClassifier(colsample_bytree=0.8334, force_row_wise=True, learning_rate=0.141, max_bin=90, max_depth=3, min_child_samples= 3, n_estimators= 40, num_leaves= 8, random_state= 38, verbose= -1)
   model.fit(X_train,y_train)
 
-  my_pred = new_model.predict(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG, MaxHR, ExerciseAngina, Oldpeak, ST_Slope)
-  
+  new_data = pd.DataFrame({
+    'Age': [Age],
+    'Sex': [Sex],
+    'ChestPainType': [ChestPainType],
+    'RestingBP': [RestingBP],
+    'Cholesterol': [Cholesterol],
+    'FastingBS': [FastingBS],
+    'RestingECG': [RestingECG],
+    'MaxHR': [MaxHR],
+    'ExerciseAngina': [ExerciseAngina],
+    'Oldpeak': [Oldpeak],
+    'ST_Slope': [ST_Slope],
+  })
+
+
+  my_pred = model.predict(new_data)
+
   return max(0.0, round(my_pred[0], 2))
 
 app = Flask(__name__)
