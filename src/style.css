@@ -376,7 +376,7 @@ nav li:hover a {
 #chat #closechat{
   background-color: red;
   position: absolute;
-  left:5%;
+  left:2%;
   top:5%;
   z-index: 1;
 }
