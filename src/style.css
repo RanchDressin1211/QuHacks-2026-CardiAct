@@ -294,6 +294,18 @@ nav li:hover a {
   margin: 5px;
   padding-top: 10%;
 }
+.aboutPerson {
+  background: rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(to right, #4EA5D9 , #3E84AE);
+  background-image: linear-gradient(to right, white , grey);
+  background-image: linear-gradient(to right, #f9ddd8f3 , white);
+  padding: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
 
 /* Predict Page */
