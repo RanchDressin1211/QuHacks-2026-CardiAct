@@ -293,3 +293,75 @@ nav li:hover a {
   font-size: 150%;
   margin-top: 5%;
 }
+
+#chatbot{
+  position: fixed;
+  right:10%;
+  bottom:5%;
+  font-size: 125%;
+  background-color: navy;
+}
+#chat{
+  display: none;
+  position: fixed;
+  right:5%;
+  width:40%;
+  height:70%;
+  bottom:15%;
+  background-color: rgb(224, 224, 224);
+  border-radius: 50px;
+  border: 1px solid black;
+}
+
+#chat #chatinput{
+
+  position: absolute;
+  background-color: white;
+  color:black;
+  bottom: 10%;
+  width: 80%;
+  left:10%;
+}
+#chat #chatsend{
+
+  position: absolute;
+  bottom: 1%;
+  width: 20%;
+  left: 40%;
+  text-align: center;
+
+}
+
+#chat #messages{
+  position: absolute;
+
+  width:80%;
+  height:80%;
+
+  left:10%;
+  top: 5%;
+
+  overflow-y: scroll;
+
+}
+
+#chat #messages .msg{
+  background-color: lightblue;
+  padding:10px;
+  border-radius: 15px;
+  color:black;
+  margin: 10px;
+}
+
+#chat #closechat{
+  background-color: red;
+  position: absolute;
+  left:5%;
+  top:5%;
+  z-index: 1;
+}
+
+#prediction-value{
+  font-size: 200%;
+  font-weight: bold;
+}

@@ -27,7 +27,7 @@
         <div id="inputs">
 
             <div class="formvalues">
-                <label for="age">Age:</label>
+                <label for="age">Age (years):</label>
                 <input type="number" name="age" id="age" />
             </div>
 
@@ -50,12 +50,12 @@
             </div>
 
             <div class="formvalues">
-                <label for="restingbp">Resting BP:</label>
+                <label for="restingbp">Resting BP (mmHg):</label>
                 <input type="number" name="restingbp" id="restingbp" />
             </div>
 
             <div class="formvalues">
-                <label for="serumchol">Serum Cholesterol:</label>
+                <label for="serumchol">Serum Cholesterol (mm/dl):</label>
                 <input type="number" name="serumchol" id="serumchol" />
             </div>
 
@@ -83,7 +83,7 @@
 
             <div class="formvalues">
                 <label for="exerciseangina">Exercise-induced Angina:</label>
-                <select name="fastingbs" id="fastingbs">
+                <select name="exerciseangina" id="exerciseangina">
                     <option value="Y">Yes</option>
                     <option value="N">No</option>
                 </select>
@@ -104,11 +104,28 @@
             </div>
 
             <button id="submit">Predict</button>
+            <p id="prediction-value"></p>
+        </div>
 
+
+        <button id="chatbot">
+            Need Help?
+        </button>
+        
+        <div id="chat">
+            <button id="closechat">X</button>
+            <div id="messages">
+                <div class="msg">Bot: Welcome! I'm here to help. Ask any questions regarding the form fields or relating to heart health!</div>
+            </div>
+
+            <textarea id="chatinput" placeholder="Ask away!"></textarea>
+            <button id="chatsend">Send</button>
         </div>
 
     </div>
   </body>
+
+  <script src="/src/main.js"></script>
 
   <script>
     // Collect inputs and call the backend prediction endpoint
@@ -119,7 +136,7 @@
         const payload = {
             Age: document.getElementById('age').value,
             Sex: document.getElementById('sex').value,
-            ChestPainType: document.getElementById('chestpain').value,
+            ChestPainType: document.getElementById('chestpaintype').value,
             RestingBP: document.getElementById('restingbp').value,
             Cholesterol: document.getElementById('serumchol').value,
             FastingBS: document.getElementById('fastingbs').value,
@@ -153,7 +170,11 @@
 
             const data = await res.json();
             console.log('Prediction result:', data);
-            outEl.textContent = data.prediction;
+            if (data.prediction == 0){
+                outEl.textContent = "Little risk of heart disease."
+            }else{
+                outEl.textContent = "High risk of heart disease."
+            }
         } catch (e) {
             console.error('Fetch error:', e);
             outEl.textContent = 'Service unreachable';

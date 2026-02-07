@@ -9,8 +9,9 @@ from lightgbm import LGBMClassifier
 
 df = pd.read_csv("heart.csv")
 
-def find_prediction(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG, MaxHR, ExerciseAngina, Oldpeak, ST_Slope):
-  
+def find_prediction(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS,
+       RestingECG, MaxHR, ExerciseAngina, Oldpeak, ST_Slope):
+
   label_encoder = LabelEncoder()
 
   df['Sex'] = label_encoder.fit_transform(df['Sex'])  # Male: 1, Female: 0
@@ -34,8 +35,23 @@ def find_prediction(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, 
   model = LGBMClassifier(colsample_bytree=0.8334, force_row_wise=True, learning_rate=0.141, max_bin=90, max_depth=3, min_child_samples= 3, n_estimators= 40, num_leaves= 8, random_state= 38, verbose= -1)
   model.fit(X_train,y_train)
 
-  my_pred = new_model.predict(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG, MaxHR, ExerciseAngina, Oldpeak, ST_Slope)
-  
+  new_data = pd.DataFrame({
+    'Age': [Age],
+    'Sex': [Sex],
+    'ChestPainType': [ChestPainType],
+    'RestingBP': [RestingBP],
+    'Cholesterol': [Cholesterol],
+    'FastingBS': [FastingBS],
+    'RestingECG': [RestingECG],
+    'MaxHR': [MaxHR],
+    'ExerciseAngina': [ExerciseAngina],
+    'Oldpeak': [Oldpeak],
+    'ST_Slope': [ST_Slope],
+  })
+
+
+  my_pred = model.predict(new_data)
+
   return max(0.0, round(my_pred[0], 2))
 
 app = Flask(__name__)
@@ -46,22 +62,22 @@ def predict():
     data = request.get_json() or {}
     try:
         age = float(data.get('Age', 0))
-        sex = data.get('Sex', 0)
-        chestpain = data.get('ChestPainType', 0)
+        sex = 1 if data.get('Sex', 0)=="M" else 0
+        chestpain = ["ASY","NAP","ATA","TA"].index(data.get('ChestPainType', 0))
         restingbp = float(data.get('RestingBP', 0))
         cholesterol = float(data.get('Cholesterol', 0))
         fastingbs = float(data.get('FastingBS', 0))
-        restingecg = data.get('RestingECG', 0)
+        restingecg = ["LVH","Normal","ST"].index(data.get('RestingECG', 0))
         maxhr = float(data.get('MaxHR', 0))
-        exerciseangina = data.get('ExerciseAngina', 0)
+        exerciseangina = 0 if data.get('ExerciseAngina', 0)=="N" else 1
         oldpeak = float(data.get('Oldpeak', 0))
-        stslope = data.get('ST_Slope', 0)
+        stslope = ["Down","Flat","Up"].index(data.get('ST_Slope', 0))
     except (TypeError, ValueError):
         return jsonify({'error': 'invalid input'}), 400
 
     prediction = find_prediction(age, sex, chestpain, restingbp, cholesterol, fastingbs, restingecg, maxhr, exerciseangina, oldpeak, stslope)
 
-    return jsonify({'prediction': prediction})
+    return jsonify({'prediction': int(prediction)})
 
 
 @app.route('/<path:path>')
@@ -76,6 +92,3 @@ def root():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
-
-
-
