@@ -4,7 +4,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from lightgbm import LGBMClassifier
 
-df = pd.read_csv("/content/heart.csv")
+df = pd.read_csv("heart.csv")
 
 def find_prediction(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG, MaxHR, ExerciseAngina, Oldpeak, ST_Slope):
   
