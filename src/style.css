@@ -154,6 +154,22 @@ button:focus-visible {
     border-radius: 80px;
 }
 
+.about-ekg-container {
+    position: absolute;
+    top: 0;
+    left: 2%;
+    width: 95%;
+    height: 50%;
+    background-image: url('/ekg-line.png');
+    background-repeat: repeat repeat;
+    background-size: auto 33%;
+    animation: moveEKG 60s linear infinite;
+    z-index: -1;
+    border-radius: 80px;
+}
+
+
+
 @keyframes moveEKG {
     from {
         /* Start at position 0 */
