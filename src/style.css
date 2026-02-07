@@ -240,3 +240,28 @@ nav li:hover a {
 }
 
 /*End of Reyansh Header*/
+
+
+
+/* Predict Page */
+#inputs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#inputs .formvalues{
+  margin:5px;
+  font-size: 125%;
+  font-weight: bold;
+}
+
+#inputs .formvalues input,select{
+  margin:5px;
+  font-size: 100%;
+}
+
+#inputs #submit{
+  font-size: 150%;
+  margin-top: 5%;
+}

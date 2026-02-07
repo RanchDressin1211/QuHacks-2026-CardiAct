@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CardiAct - Predict</title>
+  </head>
+  <body>
+
+    <nav>
+      <div id="tcoupled">
+        <img src="/heart.png" />  
+        <h1>CardiAct</h1>
+      </div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="/predict.html">Predict</a></li>
+        <li><a href="/about.html">About Us</a></li>
+        <li><a href="/info.html">Learn More</a></li>
+      </ul>
+    </nav>
+
+    <div id="app">
+
+        <div id="inputs">
+
+            <div class="formvalues">
+                <label for="age">Age:</label>
+                <input type="number" name="age" id="age" />
+            </div>
+
+            <div class="formvalues">
+                <label for="sex">Sex:</label>
+                <select name="sex" id="sex">
+                    <option value="M">M</option>
+                    <option value="M">F</option>
+                </select>
+            </div>
+
+            <div class="formvalues">
+                <label for="chestpaintype">Chest Pain Type:</label>
+                <select name="chestpaintype" id="chestpaintype">
+                    <option value="TA">TA: Typical Angina</option>
+                    <option value="ATA">ATA: Atypical Angina</option>
+                    <option value="NAP">NAP: Non-Anginal Pain</option>
+                    <option value="ASY">ASY: Asymptomatic</option>
+                </select>
+            </div>
+
+            <div class="formvalues">
+                <label for="restingbp">Resting BP:</label>
+                <input type="number" name="restingbp" id="restingbp" />
+            </div>
+
+            <div class="formvalues">
+                <label for="serumchol">Serum Cholesterol:</label>
+                <input type="number" name="serumchol" id="serumchol" />
+            </div>
+
+            <div class="formvalues">
+                <label for="fastingbs">Fasting BS:</label>
+                <select name="fastingbs" id="fastingbs">
+                    <option value="1">>120 mg/dl</option>
+                    <option value="0"><=120mg/dl</option>
+                </select>
+            </div>
+
+            <div class="formvalues">
+                <label for="restingecg">Resting ECG:</label>
+                <select name="restingecg" id="restingecg">
+                    <option value="Normal">Normal</option>
+                    <option value="ST">ST: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV)</option>
+                    <option value="LVH">LVH: showing probable or definite left ventricular hypertrophy by Estes' criteria</option>
+                </select>
+            </div>
+
+            <div class="formvalues">
+                <label for="maxhr">Max Heart Rate:</label>
+                <input type="number" name="maxhr" id="maxhr" />
+            </div>
+
+            <div class="formvalues">
+                <label for="exerciseangina">Exercise-induced Angina:</label>
+                <select name="fastingbs" id="fastingbs">
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
+            
+            <div class="formvalues">
+                <label for="oldpeak">Oldpeak:</label>
+                <input type="number" name="oldpeak" id="oldpeak" />
+            </div>
+
+            <div class="formvalues">
+                <label for="stslope">ST Slope:</label>
+                <select name="stslope" id="stslope">
+                    <option value="Up">upsloping</option>
+                    <option value="Flat">flat</option>
+                    <option value="Down">downsloping</option>
+                </select>
+            </div>
+
+            <button id="submit">Predict</button>
+
+        </div>
+
+    </div>
+  </body>
+</html>
