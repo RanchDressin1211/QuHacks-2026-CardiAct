@@ -143,14 +143,15 @@ button:focus-visible {
 .ekg-container {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 2%;
+    width: 95%;
     height: 50%;
     background-image: url('/ekg-line.png');
     background-repeat: repeat repeat;
     background-size: auto 33%;
     animation: moveEKG 60s linear infinite;
     z-index: -1;
+    border-radius: 80px;
 }
 
 @keyframes moveEKG {
@@ -171,7 +172,7 @@ header {
   justify-content: center;
   align-items: center;
   padding: 1em 0;
-  width: 100%;
+  width: 90%;
   background-color: rgb(253, 189, 67);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -242,6 +243,32 @@ nav li:hover a {
 
 /*End of Reyansh Header*/
 
+/*Section for Quote*/
+.intro{
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  padding: 20px;
+}
+
+.imgForm {
+  max-width: 400px;  
+  height: 300px;      
+  flex-shrink: 0;    
+  border-radius: 10rem; 
+  margin: 20px;
+  margin-right: 50px;
+  box-shadow: 50px 0px 10px #ffa700;
+  box-shadow: 50px 0px 20px #e2e2e2;
+  
+}
+
+.welcomeTitle{
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 5px;
+  padding-top: 10%;
+}
 
 
 /* Predict Page */
