@@ -29,7 +29,7 @@ document.getElementById("chatsend").onclick = async function(){
     let response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method:"POST",
         headers:{
-            "Authorization": `Bearer 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`,
+            "Authorization": `Bearer <ENTER YOUR API KEY>`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
