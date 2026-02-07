@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(233, 12, 12, 0.87);
+  color: rgba(255, 0, 0, 0.87);
   background-color: #ffffff;
 
   font-synthesis: none;
@@ -53,15 +53,38 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 5vh;
   line-height: 1.1;
 }
 
-app {
+#app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  z-index: 1;
+}
+
+#titlecontent{
+  position: absolute;
+  color: rgb(202, 29, 29);
+  text-align: center;
+  top:25%;
+  width:100%;
+  left:0;
+}
+
+#bodycontent{
+
+  position: absolute;
+  color: rgb(202, 29, 29);
+  text-align: center;
+  top:50%;
+  width:100%;
+  left:0;
+
+  font-size: 150%;
+
 }
 
 .logo {
@@ -122,11 +145,12 @@ button:focus-visible {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 50%;
     background-image: url('/ekg-line.png');
     background-repeat: repeat repeat;
-    background-size: auto 20%;
+    background-size: auto 33%;
     animation: moveEKG 60s linear infinite;
+    z-index: -1;
 }
 
 @keyframes moveEKG {
@@ -203,4 +227,14 @@ nav li:hover {
 
 nav li:hover a {
   color: black;
+}
+
+
+#tcoupled{
+  display: flex;
+  align-items: center;
+}
+
+#tcoupled img{
+  width:25%;
 }
