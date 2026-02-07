@@ -29,7 +29,7 @@ document.getElementById("chatsend").onclick = async function(){
     let response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method:"POST",
         headers:{
-            "Authorization": `Bearer <ENTER YOUR API KEY>`,
+            "Authorization": `Bearer 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`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -64,7 +64,7 @@ The user will ask you a question. Stay very concise. DO NOT ANSWER IN MARKDOWN. 
 
     let bmsg = document.createElement("div");
     bmsg.classList.add("msg");
-    bmsg.innerHTML = "Bot: " + resp.choices[0].message.content;
+    bmsg.innerHTML = "CardiA: " + resp.choices[0].message.content;
 
     document.getElementById("messages").appendChild(bmsg);
 
