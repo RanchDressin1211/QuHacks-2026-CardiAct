@@ -27,7 +27,7 @@
         <div id="inputs">
 
             <div class="formvalues">
-                <label for="age">Age:</label>
+                <label for="age">Age (years):</label>
                 <input type="number" name="age" id="age" />
             </div>
 
@@ -50,12 +50,12 @@
             </div>
 
             <div class="formvalues">
-                <label for="restingbp">Resting BP:</label>
+                <label for="restingbp">Resting BP (mmHg):</label>
                 <input type="number" name="restingbp" id="restingbp" />
             </div>
 
             <div class="formvalues">
-                <label for="serumchol">Serum Cholesterol:</label>
+                <label for="serumchol">Serum Cholesterol (mm/dl):</label>
                 <input type="number" name="serumchol" id="serumchol" />
             </div>
 
@@ -170,7 +170,11 @@
 
             const data = await res.json();
             console.log('Prediction result:', data);
-            outEl.textContent = data.prediction;
+            if (data.prediction == 0){
+                outEl.textContent = "Little risk of heart disease."
+            }else{
+                outEl.textContent = "High risk of heart disease."
+            }
         } catch (e) {
             console.error('Fetch error:', e);
             outEl.textContent = 'Service unreachable';

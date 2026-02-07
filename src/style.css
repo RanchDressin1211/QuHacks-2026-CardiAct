@@ -360,3 +360,8 @@ nav li:hover a {
   top:5%;
   z-index: 1;
 }
+
+#prediction-value{
+  font-size: 200%;
+  font-weight: bold;
+}
