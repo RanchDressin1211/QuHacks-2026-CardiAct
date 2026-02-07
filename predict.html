@@ -109,4 +109,57 @@
 
     </div>
   </body>
+
+  <script>
+    // Collect inputs and call the backend prediction endpoint
+    document.getElementById('submit').addEventListener('click', async function () {
+        const outEl = document.getElementById('prediction-value');
+        outEl.textContent = '...loading';
+
+        const payload = {
+            Age: document.getElementById('age').value,
+            Sex: document.getElementById('sex').value,
+            ChestPainType: document.getElementById('chestpain').value,
+            RestingBP: document.getElementById('restingbp').value,
+            Cholesterol: document.getElementById('serumchol').value,
+            FastingBS: document.getElementById('fastingbs').value,
+            RestingECG: document.getElementById('restingecg').value,
+            MaxHR: document.getElementById('maxhr').value,
+            ExerciseAngina: document.getElementById('exerciseangina').value,
+            Oldpeak: document.getElementById('oldpeak').value,
+            ST_Slope: document.getElementById('stslope').value
+        };
+
+        try {
+            const res = await fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            if (!res.ok) {
+                let errText = 'Prediction failed';
+                try {
+                    const err = await res.json();
+                    errText = err.error || JSON.stringify(err);
+                } catch (e) {
+                    errText = await res.text();
+                }
+                console.error('Prediction API error:', res.status, errText);
+                outEl.textContent = 'Error';
+                alert('Prediction failed: ' + errText);
+                return;
+            }
+
+            const data = await res.json();
+            console.log('Prediction result:', data);
+            outEl.textContent = data.prediction;
+        } catch (e) {
+            console.error('Fetch error:', e);
+            outEl.textContent = 'Service unreachable';
+            alert('Could not reach prediction service. Make sure the Flask app is running and you opened the page via http://localhost:5000/predict-output.html');
+        }
+    });
+    </script>
+  
 </html>
