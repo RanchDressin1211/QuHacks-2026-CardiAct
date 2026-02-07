@@ -1,3 +1,6 @@
+from flask import Flask, request, jsonify, send_from_directory
+
+
 import pandas as pd
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import StandardScaler, LabelEncoder
@@ -34,3 +37,45 @@ def find_prediction(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, 
   my_pred = new_model.predict(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG, MaxHR, ExerciseAngina, Oldpeak, ST_Slope)
   
   return max(0.0, round(my_pred[0], 2))
+
+app = Flask(__name__)
+
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json() or {}
+    try:
+        age = float(data.get('Age', 0))
+        sex = data.get('Sex', 0)
+        chestpain = data.get('ChestPainType', 0)
+        restingbp = float(data.get('RestingBP', 0))
+        cholesterol = float(data.get('Cholesterol', 0))
+        fastingbs = float(data.get('FastingBS', 0))
+        restingecg = data.get('RestingECG', 0)
+        maxhr = float(data.get('MaxHR', 0))
+        exerciseangina = data.get('ExerciseAngina', 0)
+        oldpeak = float(data.get('Oldpeak', 0))
+        stslope = data.get('ST_Slope', 0)
+    except (TypeError, ValueError):
+        return jsonify({'error': 'invalid input'}), 400
+
+    prediction = find_prediction(age, sex, chestpain, restingbp, cholesterol, fastingbs, restingecg, maxhr, exerciseangina, oldpeak, stslope)
+
+    return jsonify({'prediction': prediction})
+
+
+@app.route('/<path:path>')
+def static_proxy(path):
+    return send_from_directory('.', path)
+
+
+@app.route('/')
+def root():
+    return send_from_directory('.', 'index.html')
+
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
+
+
+
